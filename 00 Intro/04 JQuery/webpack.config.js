@@ -42,6 +42,7 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
+      //name:'vendor',
     }),
   ],
 };

@@ -94,6 +94,10 @@ module.exports = {
 
 ```
 
+- what is webpack.ProvidePlugin: Automatically loads modules. Whenever the identifier is encountered as free variable in a module, the module is loaded automatically and the identifier is filled with the exports of the loaded module.
+
+> 自动加载模块,每当在模块中遇到标识符为自由变量的时候,模块将自动加载,标识符会被加载的模块出口所填充
+
 - Now it's ready to be used. Just to test it, let's change the background color of the page body to blue. Let's change the background of the body element using jquery:
 
 ### ./students.js
@@ -115,7 +119,7 @@ document.write(messageToDisplay);
 
 ![blue background](../../99%20Readme%20Resources/00%20Intro/04%20JQuery/blue%20background.png)
 
-- To finish with this demo, let's face the following case: we want to split the bundle into two, a main one (application level) and a second one that will hold all the third party libraries. To do that we can use the `CommonChunkPlugin`
+- To finish with this demo, let's face the following case: we want to split the bundle into two, a main one (application level) and a second one that will hold all the third party libraries. To do that we can use the `CommonChunkPlugin`  分解bundle为两个
 (already included in webpack). In this plugin we specify the libraries that are going to be placed in the separate library js under the 'vendor' category.
 
 - First let's start by adding a new entry point called 'vendor', and there we define an array including all the libraries that we want to include under that bundle (note down, entry is not an array any more, it's an object).
@@ -125,7 +129,7 @@ document.write(messageToDisplay);
 ...
 
 module.exports = {
-- entry: ['./students.js'],
+- entry: ['./students.js'],//如果只有一个入口文件,就不需要指定key
 + entry: {
 +   app: './students.js',
 +   vendor: [
@@ -226,9 +230,13 @@ function getTotalScore(scores) {
 
 - `chunkhash` changes again, for app and vendor. That means that we still don't reap the benefits of browser caching because the hash for vendor file changes on every build and the browser will have to reload the file.
 
+> chunkhash再次更改，适用于应用和供应商。这意味着我们仍然无法获得浏览器缓存的好处，因为每个构建和浏览器上供应商文件更改的哈希值都必须重新加载
+
 ![bundle after change code](../../99%20Readme%20Resources/00%20Intro/04%20JQuery/bundle%20after%20change%20code.png)
 
 - To prevent this, we need to add [manifest configuration](https://webpack.js.org/guides/code-splitting-libraries/#manifest-file):
+
+> 为了避免没有修改到的文件发生chunkhash值的改变,我们需要添加manifest 配置
 
 ### ./webpack.config.js
 ```diff
