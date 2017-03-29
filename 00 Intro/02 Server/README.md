@@ -1,8 +1,7 @@
 # 02 Server
 
 In this sample we are going to enter into "dev mode". Working with files service
-is not ideal when you are developing a web application, we will learn how to launch
-a lite web server, how deploy our bundle into a dist folder (including `index.html`)
+is not ideal when you are developing a web application, we will learn how to na lite web server, how deploy our bundle into a dist folder (including `index.html`)
 , how to debug our es6 code directly into the browser debugger and minify
 our `bundle.js`.
 
@@ -51,6 +50,8 @@ will launch our web dev server, in this case in port 8080.
 - We don't need to remember this params every time we want to launch our dev
 server, in order to avoid this we can just add a `start` script to our `package.json` file.
 
+> 为了避免每次运行`webpack-dev-server`都需要运行,可以在npm中添加名为start的脚本命令
+
 ### ./package.json
 ```diff
 {
@@ -72,6 +73,8 @@ npm start
 
 - Now that we are using this approach, we don't need `webpack-dev-server` globally installed. In order to uninstall `webpack-dev-server` globally, execute the next command (note down the "-g" param):
 
+> 移除`Webpack-dev-server`,因为我们不需要全局安装这个,最好还是在项目级上安装就可以,可以避免很多麻烦
+
 ```
 npm uninstall webpack-dev-server -g
 ```
@@ -85,6 +88,8 @@ npm install webpack-dev-server --save-dev
 And we will get our dev server up and running.
 
 - Finally, we can configure this server in _`webpack.config.js`_:
+
+> 在`webpack.config.js`中可以配置`webpack-dev-server`监听的端口号
 
 ### ./webpack.config.js
 ```diff
