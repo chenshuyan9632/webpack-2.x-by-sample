@@ -28,6 +28,8 @@ Install [Node.js and npm](https://nodejs.org/en/) (v6.x) if they are not already
 about the project (once you have successfully fullfilled them a **`package.json`**
 file we will generated).
 
+注：执行`npm init -y`会省事点，这样会采用默认的配置
+
 ```
 npm init
 ```
@@ -36,11 +38,15 @@ npm init
 
 - Install **webpack** locally, as a development dependency (the reason to install it locally and not globally is to be easy to setup, e.g. can be launched on a clean machine without having to install anything globally but nodejs).
 
+> 注：不将Webpack安装在全局是为了系统纯净性，全局安装了Webpack，就锁定了指定版本，在不同的Webpack版本之间构建可能会导致失败
+
 ```
 npm install webpack --save-dev
 ```
 
 - In order to launch webpack, modify the **`package.json`** file an add the following property `"start": "webpack"` under the scripts object. It allows us to launch webpack from the command line through npm typing `npm start`.
+
+> 注：你可以向`npm run start`添加两条中横线，给Webpack传递自定义参数，例如`npm run start -- --colors`
 
  Now, our **`package.json`** file should looks something like:
 
@@ -71,6 +77,8 @@ npm install webpack --save-dev
 
 ```
 
+> 下面开始教你如何使用babel将ES6的语法转换成ES5
+
 - We will write es6 code but we need to transpile it to es5, in order to do
 that install `babel-core` plus `babel-preset-env` and save it as a dev dependency on the **`package.json`** file that has been previously generated.
 
@@ -78,6 +86,12 @@ that install `babel-core` plus `babel-preset-env` and save it as a dev dependenc
 npm install babel-core --save-dev
 npm install babel-preset-env --save-dev
 ```
+
+> `Babel-core`是Babel编译器自身
+> 
+> After Babel 6, the default transforms were removed; if you don't specify any plugins/presets it will just return the original source code.
+> 
+> `babel-preset-env` automatically determines plugins and polyfills you need based on your supported environments
 
 - We need to install a "loader" (more on this in next modules) in order for
 webpack to be able to make use of `babel-core` transpiler.
@@ -138,19 +152,23 @@ document.write(messageToDisplay);
     "env",
   ]
 }
+
+> `./.babelrc`：The default behavior without options runs all transforms 
+
 ```
 - Some editors can highlight that the comma is error, but really it isn't. You can delete the comma but really it's not necessary.
 
 - We can countinue with webpack configuration. Create an empty skeleton on a file named **`webpack.config.js`**, and indicate the js entry point.
 
 ### ./webpack.config.js
+
 ```javascript
 module.exports = {
-  entry: ['./students.js'],
-  output: {
-    filename: 'bundle.js',
-  },
+  entry: ['./students.js'],//入口起点
+  output: { filename: 'bundle.js', },
 };
+
+> Refers: [Webpack 入口起点概念](https://doc.webpack-china.org/concepts/entry-points/)
 
 ```
 
@@ -160,7 +178,7 @@ module.exports = {
 module.exports = {
   entry: ['./students.js'],
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.js',//输出
   },
 + module: {
 +   rules: [
