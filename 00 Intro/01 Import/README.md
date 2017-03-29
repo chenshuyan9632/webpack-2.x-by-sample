@@ -52,7 +52,7 @@ You will need to have Node.js installed in your computer. In order to follow thi
 
   ```diff javascript
   - // Let's use some ES6 features
-  + import {getAvg} from "./averageService";
+  + import {getAvg} from "./averageService";//导入averageService模块
 
   - const averageScore = "90";
   + const scores = [90, 75, 60, 99, 94, 30];
@@ -77,12 +77,13 @@ You will need to have Node.js installed in your computer. In order to follow thi
 
 We have covered a single named export usage in our previous example, but there are some other ways to use modules:
 
-### Default export
+> 在前面的例子中我们导出了单个模块 这里有其他导出模块的写法:
+
+### Default export(默认导出)
   
   One popular way is using **`export default`** as the export keyword. This will indicate that, by default, there will be just a **single export per module**. Then, we can directly use an import *alias* (by omitting the curly braces) and this will point out to our default exported member (*averarge* function in our example).
 
   - Default export usage in `averageService.js`:
-    
     #### ./averageService.js
 
     ```diff
@@ -115,8 +116,11 @@ We have covered a single named export usage in our previous example, but there a
     document.write(messageToDisplay);
     ```
 
-### Multiple named exports
+> 注:如果使用Default export ,那么在导入的时候就可以省略{}
+> 
+> 参考上面的两个demo
 
+### Multiple named exports (多个导出)
 Let's consider two functions, *getAvg* and *getTotalScore*, for the sake of this example. We can export both using named exports, just by adding the **export** keyword on each function. 
 
   - Multiple exports usage in `averageService.js`:
@@ -161,6 +165,8 @@ Now, we can import them in several ways into `students.js`:
     ```  
   
   - Import the entire module's content by using the wildcard `*` and a *name* for our module. This *name* will hold all the exported members in our current scope (*name* is used as namespace):
+
+  > 使用`*`导入所有
 
     #### ./students.js
 
