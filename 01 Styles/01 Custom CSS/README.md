@@ -59,8 +59,8 @@ used on some e.g. div. (we will name it `mystyles.css`):
 ```
 
 - Let's start installing `style-loader` and `css-loader` as dev dependencies.
-  - `css-loader` is for load `.css` files.
-  - `style-loader` is to insert styles in html file, so we can use these styles.
+  - `css-loader` is for load `.css` files. 加载css文件
+  - `style-loader` is to insert styles in html file, so we can use these styles. 将样式插入到html文件中
 
 ```
 npm install style-loader --save-dev
@@ -132,6 +132,8 @@ being displayed on the div we have chosen.
 
 - If we run `webpack` and take a look at console, we can see that appStyles are bundling as `.js` file. We need take care about size here because `.js` file is weightier than `.css`files.
 
+> 当我们执行`Webpack`查看控制台,需要留意样式文件变成了`js`文件了,值得注意的是它的大小,因为`.js`文件要比`.css`文件更加重量
+
 ![appStyles in console](../../99%20Readme%20Resources/01%20Styles/01%20Custom%20CSS/appStyles%20in%20console.png)
 
 - Opening `appStyles.js` file, we can see that has about 316 lines of code, where we can see:
@@ -157,6 +159,8 @@ exports.push([module.i, ".red-background {\r\n background-color: indianred;\r\n}
 ```
 
 - To avoid size issue, we need to install [`extract-text-webpack-plugin`](https://github.com/webpack-contrib/extract-text-webpack-plugin):
+
+> 为了避免大小过大的问题,我们需要引入一个插件`extract-text-webpack-plugin`
 
 ```
 npm install extract-text-webpack-plugin --save-dev

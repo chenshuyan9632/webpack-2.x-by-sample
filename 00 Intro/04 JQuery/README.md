@@ -231,6 +231,8 @@ function getTotalScore(scores) {
 - `chunkhash` changes again, for app and vendor. That means that we still don't reap the benefits of browser caching because the hash for vendor file changes on every build and the browser will have to reload the file.
 
 > chunkhash再次更改，适用于应用和供应商。这意味着我们仍然无法获得浏览器缓存的好处，因为每个构建和浏览器上供应商文件更改的哈希值都必须重新加载
+>
+> Refers:[分离Library-webpack文档](https://doc.webpack-china.org/guides/code-splitting-libraries/)
 
 ![bundle after change code](../../99%20Readme%20Resources/00%20Intro/04%20JQuery/bundle%20after%20change%20code.png)
 
