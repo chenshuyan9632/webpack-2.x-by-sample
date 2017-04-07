@@ -203,6 +203,8 @@ document.body.appendChild(element);
 
 - By default, `tsconfig.json` has [`module` default value to `commonjs`](https://www.typescriptlang.org/docs/handbook/compiler-options.html) when target is not ES6, so we need to configure target to ES6:
 
+> 默认`babel-preset-env`会将ES6模块转换为commonjs,因此我们需要把这个功能给关了
+
 ### ./tsconfig.json
 ```diff
 {
